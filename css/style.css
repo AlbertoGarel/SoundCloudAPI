@@ -72,10 +72,10 @@
     background-color:#0BFF01;
 }
 .nav-li-sticky#li7{
-    background-color:#FCFF00;
+    background-color: #FFB600;
 }
 .nav-li-sticky#li8{
-    background-color: #FFB600;
+    background-color: #f27600;
 }
 .nav-li-sticky#li9{
     background-color:#FF4E00
@@ -163,17 +163,19 @@ transform: translate(-0%, -50%);
     padding: .8rem;
     height: 3em;
 }
-#cont-bucador label{
-    color: #fff;
-    padding: .3rem;
-    text-indent: 2rem;
+#cont-bucador #btnbusc{
+    background: #ffa500;
+    border-radius: 10px;
+    height: 2em;
 }
 #cont-bucador input{
+    border-radius: 10px;
     text-indent: 1rem;
+    height: 2em;
 }
 #cont-resultados{
     width: 30em;
-    background: #5D6E9A;
+    background: #AEA2AE;
     border-radius: 10px;
     height: 100%;
 }
