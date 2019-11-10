@@ -1,9 +1,9 @@
 SC.initialize({
   client_id: 'aa06b0630e34d6055f9c6f8beb8e02eb'
 });
-var handlerplayer;
-var suena;
-let MuestraAudio;
+var handlerplayer = '';
+var suena = '';
+let muestraAudio = '';
 
 //EVENTO PARA BOTON INICIAR BÚQUEDA
 const btnBuscador = document.getElementById('btnbusc');
@@ -194,13 +194,10 @@ document.getElementById('menos').addEventListener('click', function () {
 });
 document.getElementById('menos').addEventListener('mouseover', function () {
   ele.setAttribute('style', 'right: 0px');
-  clearTimeout(muestraAudio);
+  cleanSetTimeOut()
 })
 document.getElementById('menos').addEventListener('mouseout', function () {
-
-  muestraAudio = setTimeout(() => {
-    ele.setAttribute('style', 'right: -80px')
-  }, 3000);
+  iniSetTimeout();
 })
 
 document.getElementById('mas').addEventListener('click', function () {
@@ -217,12 +214,10 @@ document.getElementById('mas').addEventListener('click', function () {
 });
 document.getElementById('mas').addEventListener('mouseover', function () {
   ele.setAttribute('style', 'right: 0px');
-  clearTimeout(muestraAudio);
+  cleanSetTimeOut()
 })
 document.getElementById('mas').addEventListener('mouseout', function () {
-  muestraAudio = setTimeout(() => {
-    ele.setAttribute('style', 'right: -80px')
-  }, 3000);
+  iniSetTimeout()
 })
 
 //VISUALIZACION VOLUMEN
@@ -237,4 +232,13 @@ function volumenControl(volumen) {
   for (let i = 0; i < volumenConv; i++) {
     control[i].setAttribute('style', 'visibility: visible');
   }
+}
+//FUNCIÓN TIMEOUT PARA VOLUMEN
+function iniSetTimeout(){
+  muestraAudio = setTimeout(() => {
+    ele.setAttribute('style', 'right: -80px')
+  }, 3000);
+}
+function cleanSetTimeOut(){
+  clearTimeout(muestraAudio);
 }
