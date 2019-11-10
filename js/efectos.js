@@ -10,37 +10,38 @@ let cont_audio = document.getElementById('cont-audio');
 
 function eventosWinndow(ev) {
 
-    const contNavSticky = document.getElementById('nav-lat-sticky');
-    const contFlechaSticky = document.querySelector('#flecha-sticky');
+    // const contNavSticky = document.getElementById('nav-lat-sticky');
+    // const contFlechaSticky = document.querySelector('#flecha-sticky');
 
     let anchoView = window.innerWidth;
-    let altoView = window.innerHeight;
+    // let altoView = window.innerHeight;
     let x = ev.clientX;
     let y = ev.clientY;
 
-    if ((x >= (porcentajes(75, anchoView))) && (y >= porcentajes(30, altoView))) {
-        contFlechaSticky.style = 'visibility: hidden';
-        contNavSticky.style = 'right: 0px!important;';
-    } else {
-        contFlechaSticky.style = 'visibility: visible';
-        contNavSticky.style = 'right: -80px!important;';
-    }
+    // if ((x >= (porcentajes(75, anchoView))) && (y >= porcentajes(30, altoView))) {
+    //     contFlechaSticky.style = 'visibility: hidden';
+    //     contNavSticky.style = 'right: 0px!important;';
+    // } else {
+    //     contFlechaSticky.style = 'visibility: visible';
+    //     contNavSticky.style = 'right: -80px!important;';
+    // }
 
-    const contTopSticky = document.getElementById('nav-top-stiky');
-    const contImgFlechaTopSticky = document.getElementById('cont-flecha-bottom');
+    // const contTopSticky = document.getElementById('nav-top-stiky');
+    // const contImgFlechaTopSticky = document.getElementById('cont-flecha-bottom');
 
-    if ((y <= (porcentajes(25, altoView)))) {
-        contImgFlechaTopSticky.style = 'visibility: hidden';
-        contTopSticky.style = 'top: 0px!important;';
-    } else {
-        contImgFlechaTopSticky.style = 'visibility: visible';
-        contTopSticky.style = 'top: -20vh!important;';
-    }
+    // if ((y <= (porcentajes(25, altoView)))) {
+    //     contImgFlechaTopSticky.style = 'visibility: hidden';
+    //     contTopSticky.style = 'top: 0px!important;';
+    // } else {
+    //     contImgFlechaTopSticky.style = 'visibility: visible';
+    //     contTopSticky.style = 'top: -20vh!important;';
+    // }
 
     const contLeftSticky = document.querySelector('#nav-left-sticky');
     const contIcoLupa = document.querySelector('#ico-lupa')
 
-    if ((x <= (porcentajes(25, anchoView))) && (y >= porcentajes(20, altoView))) {
+    // if ((x <= (porcentajes(25, anchoView))) && (y >= porcentajes(20, altoView))) {
+    if (x <= (porcentajes(25, anchoView))) {
         contIcoLupa.style = 'visibility: hidden';
         contLeftSticky.style = 'left: 0em!important;';
     } else {
@@ -48,7 +49,7 @@ function eventosWinndow(ev) {
         contLeftSticky.style = 'left: -30em!important;';
     }
 }
-
+//EFECTO ENTRADA Y SALIDA CONTAINERS
 window.addEventListener('mousemove', eventosWinndow);
 
 const contLeft = document.querySelector('#nav-left-sticky');

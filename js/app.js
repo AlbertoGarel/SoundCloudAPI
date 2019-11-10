@@ -1,19 +1,11 @@
-// const myUrl = 'https://api.soundcloud.com/oauth2/Yaa06b0630e34d6055f9c6f8beb8e02eb'
-// const url = 'https://api.soundcloud.com/tracks?client_id=Yaa06b0630e34d6055f9c6f8beb8e02eb'
-
-// axios.get('https://api.soundcloud.com/oauth2/Yaa06b0630e34d6055f9c6f8beb8e02eb')
-// .then(res=>console.log(res))
-// .catch(error => error)
-
-
-
 SC.initialize({
   client_id: 'aa06b0630e34d6055f9c6f8beb8e02eb'
 });
 var handlerplayer;
 var suena;
+let MuestraAudio;
 
-//EVENTO PARA BOTON E INICIAR BÚQUEDA
+//EVENTO PARA BOTON INICIAR BÚQUEDA
 const btnBuscador = document.getElementById('btnbusc');
 btnBuscador.addEventListener('click', buscar)
 
@@ -77,11 +69,11 @@ function pintar(algo) {
     document.getElementById('resultados').appendChild(image);
   }
 }
-
+//BORRADO DE MENSAJES DE ERROR BÚSQUEDA
 const borraError = (divErrores) => {
   setTimeout(() => {
     divErrores.innerHTML = '';
-  }, 3000)
+  }, 2500)
 }
 //DRAGGABLE ELEMENTS originales
 // function allowDrop(ev) {
@@ -109,31 +101,62 @@ function drop(ev) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   play(data);
-  // efectoColores();
   ev.target.appendChild(document.getElementById(data));
   buscar();
   getDatosRepro(data);
+  volumenControl(volumen)
 }
 
-
+//MOSTRAR DATOS PARTE SUP.
 function getDatosRepro(data) {
-
-  SC.get(`/tracks/${data}`).then(function (tracks) {
-    $('top-slider').append(`<h1>${data.title}</h1>`)
-    $('top-slider').append(`<h1>${data.title}</h1>`)
-    $('top-slider').append(`<h1>${data.title}</h1>`)
-    $('top-slider').append(`<h1>${data.title}</h1>`)
-    console.log('Latest track: ' + tracks.title);
+  SC.get(`/tracks/${data}`).then(tracks => {
+    aniadeDatosTrack(tracks)
   });
 }
 
 //EVENTOS CON JQUERY
-$(function () {
+function creaNodo(elemento) {
+  let ele = document.createElement(elemento)
+  return ele;
+}
+//CREAR CONTENEDORES Y PINTAR DATOS PARTE SUP.
+function aniadeDatosTrack(data) {
+  let contImage = document.getElementById('top-image');
+  let contData = document.getElementById('top-data');
+  contImage.innerHTML = '';
+  contData.innerHTML = '';
+
+  let img = creaNodo('img');
+
+  if (data.artwork_url == undefined) {
+    img.setAttribute('src', './images/fondos/netosk-avatar.jpg')
+  } else {
+    img.setAttribute('src', data.artwork_url);
+  }
+
+  img.setAttribute('alt', 'artwork track')
+  contImage.appendChild(img)
 
 
+  let titu = creaNodo('h1');
+  let textTitle = document.createTextNode(data.title);
+  titu.appendChild(textTitle);
+  contData.appendChild(titu);
 
-});
+  let autor = creaNodo('p');
+  let textAutor = document.createTextNode(data.user.username);
+  autor.appendChild(textAutor);
+  contData.appendChild(autor);
 
+  let fecha = creaNodo('p');
+  let fechaSplit = data.created_at.split(' ')
+  let textFecha = document.createTextNode(fechaSplit[0]);
+  fecha.appendChild(textFecha);
+  contData.appendChild(fecha);
+
+  document.getElementById('nav-top-stiky').setAttribute('style', 'top: 0vh');
+}
+//EVENTO PAUSA
 document.getElementById('pause').addEventListener('click', function () {
   if (!handlerplayer.isPlaying()) {
     handlerplayer.play();
@@ -144,10 +167,10 @@ document.getElementById('pause').addEventListener('click', function () {
     clearInterval(efectoColores1)
   }
 });
-
-document.getElementById('stop').addEventListener('click', function () {
-  handlerplayer.kill();
-});
+// EVENTO STOP
+// document.getElementById('stop').addEventListener('click', function () {
+//   handlerplayer.kill();
+// });
 
 // PLAY TRACK
 function play(algo) {
@@ -165,5 +188,63 @@ function play(algo) {
   });
 }
 
+// setVolume(volume)
+let ele = document.getElementById('nav-lat-sticky');
+let volumen = .5;
+document.getElementById('menos').addEventListener('click', function () {
+  // VM115221 sdk-3.3.2.js:3 Uncaught Error: Volume must be >= 0 and <= 1.
+  volumen = volumen * 10;
+  volumen = volumen - 1;
+  volumen = volumen / 10;
+  if (volumen < 0) {
+    volumen = 0;
+  }
+    handlerplayer.setVolume(volumen);
+    volumenControl(volumen);
+});
+document.getElementById('menos').addEventListener('mouseover', function () {
+  ele.setAttribute('style', 'right: 0px');
+  clearTimeout(muestraAudio);
+})
+document.getElementById('menos').addEventListener('mouseout', function () {
 
+  muestraAudio = setTimeout(() => {
+    ele.setAttribute('style', 'right: -80px')
+  }, 3000);
+})
 
+document.getElementById('mas').addEventListener('click', function () {
+  // VM115221 sdk-3.3.2.js:3 Uncaught Error: Volume must be >= 0 and <= 1.
+  volumen = volumen * 10;
+  volumen = volumen + 1;
+  volumen = volumen / 10;
+  if (volumen > 1) {
+    volumen = 1;
+  }
+    handlerplayer.setVolume(volumen);
+    volumenControl(volumen);
+  
+});
+document.getElementById('mas').addEventListener('mouseover', function () {
+  ele.setAttribute('style', 'right: 0px');
+  clearTimeout(muestraAudio);
+})
+document.getElementById('mas').addEventListener('mouseout', function () {
+  muestraAudio = setTimeout(() => {
+    ele.setAttribute('style', 'right: -80px')
+  }, 3000);
+})
+
+//VISUALIZACION VOLUMEN
+function volumenControl(volumen) {
+  console.log(volumen)
+
+  let control = document.getElementsByClassName('nav-li-sticky')
+  for (let j = 0; j < control.length; j++) {
+    control[j].setAttribute('style', 'visibility: hidden');
+  }
+  let volumenConv = volumen * 10;
+  for (let i = 0; i < volumenConv; i++) {
+    control[i].setAttribute('style', 'visibility: visible');
+  }
+}
