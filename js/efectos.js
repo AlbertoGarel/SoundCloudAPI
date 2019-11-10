@@ -8,7 +8,13 @@ function porcentajes(porc, total) {
 //ELEMENTOS MÁS UTILIZADOS
 let cont_audio = document.getElementById('cont-audio');
 
+
+//CONTROL DE ENTRADA Y SALIDA CONTENEDORES SEGÚN POSICIÓN DE PUNTERO.
 function eventosWinndow(ev) {
+    /*
+    LÍNEAS COMENTADASPOR DEJAR DE SER UTIL EN ESTE MOMENTO. SE PUEDE DESCOMENTAR PARA CAMBIAR COMPORTAMIENTO
+    Y TENER EL CONTROL POR PARTE DEL USUARIO TB.
+    */
 
     // const contNavSticky = document.getElementById('nav-lat-sticky');
     // const contFlechaSticky = document.querySelector('#flecha-sticky');
@@ -61,6 +67,7 @@ contLeft.addEventListener('mouseout', () => {
     window.addEventListener('mousemove', eventosWinndow);
 })
 
+// LÓGICA PARA ECUALIZADOR DECORATIVO
 let efectoColores1 = '';
 let numCont = 23;
 function efectoColores() {
@@ -88,17 +95,12 @@ function efectoColores() {
     }, 100);
 
 }
-
+/*PONE ECUALIZADOR A CERO, SIN BARRAS DE COLORES(EJMP. PAUSE) */
 function limpiaEcu() {
     for (let i = 0; i < numCont; i++) {
         document.getElementById(`ecu${i}`).style.height = '4%'
         document.getElementById(`ecu${i}`).style.backgroundColor = ' lightseagreen'
     }
-}
-
-function ocultaMuestra() {
-    let contEcu = document.getElementById('cont-audio').getAttribute('display');
-
 }
 
 

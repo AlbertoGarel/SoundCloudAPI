@@ -27,19 +27,6 @@
     transition:all .3s linear;
 
 }
-
-/* #flecha-sticky{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 250px;
-    cursor: pointer;
-    padding: .5em;
-    transition: visibility .4s linear;
-}
-#flecha-sticky img{
-    width: 60px;
-} */
 #cont-ul-sticky{
     background-color: rgba(250,250,250,.15);
     width: 5em;
@@ -105,7 +92,6 @@
     padding:0px;
     margin:0px;
     width:auto;
-    /* z-index: 1100; */
     display: flex;
     transition:all .6s linear;
     width: 100%;
@@ -117,7 +103,6 @@
     width: 100%;
     height: 20vh;
     background-color: transparent;
-    /* background-color: rgba(250,250,250,.1); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,6 +127,9 @@
     height: 18vh;
     padding-right: 1vw;
 }
+#resultados img:hover{
+    opacity: .5;
+}
 
 /* CAJA BÚSQUEDA Y RESULTADO */
 #nav-left-sticky{
@@ -149,9 +137,6 @@
     height: 100vh;
     left: -30em;
     top: 0;
-    /* bottom: 0px; */
-    /* transform: translate(-0%, -30%);
-    -webkit-transform: translate(-0%, -30%); */
     padding:0px;
     margin:0px;
     width:auto;
@@ -160,10 +145,6 @@
     justify-content: flex-end;
     transition:all .6s linear;
 }
-/* #ico-lupa{
-    display: flex;
-    align-items: center;
-} */
 #ico-lupa{
  position: fixed;
  left: 0;
@@ -200,7 +181,6 @@ transform: translate(-0%, -50%);
     display: flex;
     flex-wrap: wrap;
     margin: .3rem;
-    /* background-color: #D5C7D4; */
     border-radius: 10px;
     overflow-y: scroll;
     height: calc(100% - 3em);
@@ -299,30 +279,7 @@ main{
     background-position: right;
     cursor: pointer;  
 }
-/*-------------------------OBTENIDO DE PROMESAS*/
 /*CONTENEDOR USUARIO*/
-#datos-user{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    background-repeat: no-repeat;
-
-}
-#datos-user-princ{
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    padding: .3em;
-    display: flex;
-    flex-direction: column;
-}
-#datos-user-princ h5{
-    color: white;
-}
-#datos-user-princ img{
-    border-radius: 50%;
-}
-
 
 body, main{
     height: 100vh;
@@ -330,6 +287,7 @@ body, main{
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
+ /* VISUALIZACIÓN DE ERRORES */
 #errorvisto{
     background: rgba(218, 14, 14, 0.644);
     width: 100%;
@@ -346,15 +304,11 @@ body, main{
     text-decoration: underline;
   
 }
-#resultados img:hover{
-    opacity: .5;
-}
-
+/* VISTAS ECUALIZADOR DE PEGA  (-- EFECTO DECORATIVO --)*/
 #ecu{
     display: none;
     width: 100%;
     height: 100px;
-    /* display: flex; */
     justify-content: flex-start;
     align-items: flex-end;
 }

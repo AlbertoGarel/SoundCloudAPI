@@ -83,20 +83,6 @@ const borraError = (divErrores) => {
     divErrores.innerHTML = '';
   }, 2500)
 }
-//DRAGGABLE ELEMENTS originales
-// function allowDrop(ev) {
-//   ev.preventDefault();
-// }
-
-// function drag(ev) {
-//   ev.dataTransfer.setData("text", ev.target.id);
-// }
-
-// function drop(ev) {
-//   ev.preventDefault();
-//   var data = ev.dataTransfer.getData("text");
-//   ev.target.appendChild(document.getElementById(data));
-// }
 function allowDrop(ev) {
   ev.preventDefault();
   document.getElementById('cont-muestra').innerHTML = "";
@@ -175,10 +161,6 @@ document.getElementById('pause').addEventListener('click', function () {
     clearInterval(efectoColores1)
   }
 });
-// EVENTO STOP
-// document.getElementById('stop').addEventListener('click', function () {
-//   handlerplayer.kill();
-// });
 
 // PLAY TRACK
 function play(algo) {
