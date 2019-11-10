@@ -66,7 +66,15 @@ function pintar(algo) {
 
     image.setAttribute('data-title', `${algo[i].title}`)
 
-    document.getElementById('resultados').appendChild(image);
+    let contenedor = document.createElement('div');
+    contenedor.setAttribute('class', 'cont-opciones')
+    let parraf = document.createElement('p');
+    let contenido = document.createTextNode(algo[i].title)
+
+    parraf.appendChild(contenido);
+    contenedor.appendChild(parraf);
+    contenedor.appendChild(image);
+    document.getElementById('resultados').appendChild(contenedor);
   }
 }
 //BORRADO DE MENSAJES DE ERROR BÚSQUEDA

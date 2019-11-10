@@ -206,9 +206,25 @@ transform: translate(-0%, -50%);
     height: calc(100% - 3em);
     flex-wrap: wrap;
 }
-#resultados img{
+.cont-opciones{
+    display: flex;
+    justify-content: center;
+    position: relative;
     width: 50%;
-    z-index: 1100;
+    cursor: grab;
+}
+.cont-opciones img{
+    width: 100%;
+}
+.cont-opciones p{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(250,250,250,.5);
+    text-align: center;
+    font-weight: 900;
+    padding: .3em;
+    border-radius: 10px;
+    margin: .5em;
 }
 #cont-reproduce{
     width: 400px;
@@ -316,6 +332,7 @@ body, main{
 }
 #errorvisto{
     background: rgba(218, 14, 14, 0.644);
+    width: 100%;
     border: 2px solid red;
     padding: 1em;
     text-align: center;
@@ -347,7 +364,5 @@ body, main{
     width: 5%;
 }
 
-#ecu:first-child{
-    
 
-}
+
